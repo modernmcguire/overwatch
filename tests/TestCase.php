@@ -3,8 +3,8 @@
 namespace Modernmcguire\Overwatch\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Modernmcguire\Overwatch\OverwatchServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
