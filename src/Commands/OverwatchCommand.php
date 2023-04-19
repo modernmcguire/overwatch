@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Modernmcguire\Overwatch\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class OverwatchCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'overwatch';
 
     public $description = 'My command';
 

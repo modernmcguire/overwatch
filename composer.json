@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "modernmcguire/overwatch",
+    "description": "Configure and provide customizable Stripe data via RESTful endpoint.",
     "keywords": [
-        ":vendor_name",
+        "modernmcguire",
         "laravel",
-        ":package_slug"
+        "overwatch"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/modernmcguire/overwatch",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Modern Mcguire",
+            "email": "grayson@modernmcguire.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Modernmcguire\\Overwatch\\": "src/",
+            "Modernmcguire\\Overwatch\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Modernmcguire\\Overwatch\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Modernmcguire\\Overwatch\\OverwatchServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Overwatch": "Modernmcguire\\Overwatch\\Facades\\Overwatch"
             }
         }
     },
