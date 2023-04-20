@@ -3,9 +3,9 @@
 namespace Modernmcguire\Overwatch;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
 class Overwatch
@@ -23,7 +23,7 @@ class Overwatch
         }
 
         foreach ($configs as $config) {
-            $class      = new $config;
+            $class = new $config;
             $response[] = $class->handle();
         }
 
@@ -34,19 +34,19 @@ class Overwatch
     {
         $ourSecret = config('overwatch.secret');
 
-        if (!$theirSecret || !$ourSecret) {
+        if (! $theirSecret || ! $ourSecret) {
             abort(401, 'Invalid secret.');
         }
 
         // create new encrypter with our secret
-        $newEncrypter = new Encrypter( $ourSecret, Config::get( 'app.cipher' ) );
+        $newEncrypter = new Encrypter($ourSecret, Config::get('app.cipher'));
 
          try {
             // decrypt incoming data
-            $decrypted = $newEncrypter->decrypt( $encryptedPayload );
+            $decrypted = $newEncrypter->decrypt($encryptedPayload);
             $decryptedData = json_decode($decrypted);
 
-            if (!isset($decryptedData->timestamp)) {
+            if (! isset($decryptedData->timestamp)) {
                 abort(401, 'Missing timestamp.');
             }
 
@@ -54,7 +54,7 @@ class Overwatch
             if ($timestamp->lt(now()) && $timestamp->subMinute()->gt(now())) {
                 abort(401, 'Expired secret.');
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             abort(401, $e->getMessage());
         }
     }

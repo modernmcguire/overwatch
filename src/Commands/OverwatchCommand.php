@@ -17,7 +17,7 @@ class OverwatchCommand extends Command
         $key = Encrypter::generateKey(Config::get('app.cipher'));
         config(['overwatch.secret' => $key]);
 
-        $this->comment('Generated secret: ' . $key);
+        $this->comment('Generated secret: '.$key);
 
         return self::SUCCESS;
     }
