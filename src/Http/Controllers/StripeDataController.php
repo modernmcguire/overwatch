@@ -2,8 +2,8 @@
 
 namespace Modernmcguire\Overwatch;
 
-use \Stripe\StripeClient;
 use App\Http\Controllers\Api\ApiController;
+use Stripe\StripeClient;
 
 class StripeDataController extends ApiController
 {
@@ -11,12 +11,10 @@ class StripeDataController extends ApiController
 
     /**
      * Gets specific data from Stripe.
-     *
-     * @return string
      */
     public function handle(): string
     {
-        if (!config('overwatch.services.stripe.secret')) {
+        if (! config('overwatch.services.stripe.secret')) {
             return $this->errorResponse([], 'Stripe secret key not set', 500);
         }
 
