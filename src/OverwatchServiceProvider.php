@@ -18,13 +18,7 @@ class OverwatchServiceProvider extends PackageServiceProvider
         $package
             ->name('overwatch')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_overwatch_table')
+            ->hasRoute('api')
             ->hasCommand(OverwatchCommand::class);
-    }
-
-    public function bootingPackage()
-    {
-        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
 }
