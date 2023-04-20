@@ -1,19 +1,5 @@
-# Configure and provide customizable Stripe data via RESTful endpoint.
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/modernmcguire/overwatch.svg?style=flat-square)](https://packagist.org/packages/modernmcguire/overwatch)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/modernmcguire/overwatch/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/modernmcguire/overwatch/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/modernmcguire/overwatch/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/modernmcguire/overwatch/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/modernmcguire/overwatch.svg?style=flat-square)](https://packagist.org/packages/modernmcguire/overwatch)
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/overwatch.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/overwatch)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+# OVERWATCH
+This package allows you to configure a laravel site to send customizable JSON data when its `/overwatch` endpoint is requested.
 
 ## Installation
 
@@ -21,13 +7,6 @@ You can install the package via composer:
 
 ```bash
 composer require modernmcguire/overwatch
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="overwatch-migrations"
-php artisan migrate
 ```
 
 You can publish the config file with:
@@ -40,26 +19,41 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'secret' => env('OVERWATCH_SECRET'),
+    'metrics' => [],
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="overwatch-views"
-```
-
 ## Usage
+Generate a secret that will save to your config file:
+```bash
+overwatch make:secret
+```
+Add custom classes to your overwatch config file
 
 ```php
-$overwatch = new Modernmcguire\Overwatch();
-echo $overwatch->echoPhrase('Hello, Modernmcguire!');
+return [
+    'secret' => env('OVERWATCH_SECRET'),
+    'metrics' => [
+        StripeController::class,
+        LmsController::class,
+    ],
+];
+```
+From the site you wish to pull data to, make requests to `/overwatch` and create a payload. Make sure both sites use the same cipher.
+```php
+$cipher = strtolower(Config::get('app.cipher'));
+// Assumes you have stored overwatch's secret in the receiver's database.
+$secret = Project::where('id', $projectId)->value('secret');
+$newEncrypter = new Encrypter($secret, $cipher);
+$payload = json_encode(['timestamp' => now()->toDateTimeString()]);
+$encryptedPayload = $newEncrypter->encrypt($payload);
 ```
 
 ## Testing
 
 ```bash
-composer test
+vendor/bin/pest
 ```
 
 ## Changelog

@@ -1,6 +1,6 @@
 <?php
 
-// config for Modernmcguire/Overwatch
 return [
-
+    'secret' => env('OVERWATCH_SECRET'),
+    'metrics' => [],
 ];
