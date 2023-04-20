@@ -22,4 +22,9 @@ class OverwatchServiceProvider extends PackageServiceProvider
             ->hasMigration('create_overwatch_table')
             ->hasCommand(OverwatchCommand::class);
     }
+
+    public function bootingPackage()
+    {
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+    }
 }
