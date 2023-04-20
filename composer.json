@@ -1,7 +1,8 @@
 {
     "name": "modernmcguire/overwatch",
     "description": "Configure and provide customizable Stripe data via RESTful endpoint.",
-    "v": "0.0.1",
+    "version": "0.0.1",
+    "type": "package",
     "keywords": [
         "modernmcguire",
         "laravel",
