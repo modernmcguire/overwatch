@@ -18,8 +18,8 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "illuminate/contracts": "^10.0",
+        "php": "^8.0",
+        "illuminate/contracts": "^9.0|^10.0",
         "illuminate/routing": "*",
         "spatie/laravel-package-tools": "^1.14.0"
     },
@@ -28,7 +28,7 @@
         "nunomaduro/collision": "^7.9",
         "nunomaduro/larastan": "^2.0.1",
         "orchestra/canvas": "^8.1",
-        "orchestra/testbench": "^8.5",
+        "orchestra/testbench": "^8.5|^7.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
