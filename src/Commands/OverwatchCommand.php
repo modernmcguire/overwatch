@@ -11,7 +11,7 @@ class OverwatchCommand extends Command
 {
     public $signature = 'overwatch';
 
-    public $description = 'My command';
+    public $description = 'Generate a secret for Overwatch.';
 
     public function handle(): int
     {
