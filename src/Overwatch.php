@@ -25,12 +25,13 @@ class Overwatch
                 $response[$class::KEY] = $class->handle();
             } catch (\Exception $e) {
                 $response[$class::KEY] = [
-                    'data'    => null,
+                    'data' => null,
                     'message' => $e->getMessage(),
-                    'code'    => 500,
+                    'code' => 500,
                 ];
             }
         }
+
         return response()->json($response);
     }
 
@@ -47,7 +48,7 @@ class Overwatch
 
         $ourSecret = config('app.key');
 
-        if (!$theirSecret || !$ourSecret) {
+        if (! $theirSecret || ! $ourSecret) {
             abort(401, 'Invalid secret.');
         }
 
@@ -56,7 +57,7 @@ class Overwatch
             $decrypted = decrypt($encryptedPayload);
             $decryptedData = json_decode($decrypted);
 
-            if (!isset($decryptedData->timestamp)) {
+            if (! isset($decryptedData->timestamp)) {
                 abort(401, 'Missing timestamp.');
             }
 
