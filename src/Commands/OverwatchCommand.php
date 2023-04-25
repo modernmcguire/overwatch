@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class OverwatchCommand extends Command
 {
-    public $signature = 'overwatch make:secret';
+    public $signature = 'overwatch';
 
     public $description = 'My command';
 
