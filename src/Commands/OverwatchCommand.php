@@ -4,8 +4,8 @@ namespace Modernmcguire\Overwatch\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
 
 class OverwatchCommand extends Command
 {
