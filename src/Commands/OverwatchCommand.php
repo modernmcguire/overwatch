@@ -4,11 +4,12 @@ namespace Modernmcguire\Overwatch\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 
 class OverwatchCommand extends Command
 {
-    public $signature = 'overwatch make:secret';
+    public $signature = 'overwatch';
 
     public $description = 'My command';
 
@@ -16,6 +17,9 @@ class OverwatchCommand extends Command
     {
         $key = Encrypter::generateKey(Config::get('app.cipher'));
         config(['overwatch.secret' => $key]);
+
+        // Save the configuration to a file
+        Artisan::call('config:cache');
 
         $this->comment('Generated secret: '.$key);
 

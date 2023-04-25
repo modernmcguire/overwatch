@@ -27,7 +27,7 @@ return [
 ## Usage
 Generate a secret that will save to your config file:
 ```bash
-overwatch make:secret
+php artisan overwatch
 ```
 Add custom classes to your overwatch config file
 
