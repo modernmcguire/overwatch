@@ -19,21 +19,19 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'secret' => env('OVERWATCH_SECRET'),
     'metrics' => [],
 ];
 ```
 
 ## Usage
-Generate a secret that will save to your config file:
+The site's secret uses the app key. To create a new one use the following command:
 ```bash
-php artisan overwatch
+php artisan key:generate
 ```
 Add custom classes to your overwatch config file
 
 ```php
 return [
-    'secret' => env('OVERWATCH_SECRET'),
     'metrics' => [
         StripeController::class,
         LmsController::class,
