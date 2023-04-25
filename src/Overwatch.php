@@ -3,47 +3,58 @@
 namespace Modernmcguire\Overwatch;
 
 use Carbon\Carbon;
-use Illuminate\Encryption\Encrypter;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class Overwatch
 {
-    public function index(Request $request): JsonResponse
+    public function index(Request $request)
     {
-        $this->checkSignature($request->headers('X-OVERWATCH-SECRET'), $request->getData());
+        $this->checkSignature($request->header('X-OVERWATCH-SECRET'), $request->getContent());
 
         $configs = config('overwatch.metrics');
 
         $response = [];
 
         if (empty($configs)) {
-            return json_encode($response);
+            return response()->json($response);
         }
 
         foreach ($configs as $config) {
             $class = new $config;
-            $response[] = $class->handle();
+            try {
+                $response[$class::KEY] = $class->handle();
+            } catch (\Exception $e) {
+                $response[$class::KEY] = [
+                    'data' => null,
+                    'message' => $e->getMessage(),
+                    'code' => 500,
+                ];
+            }
         }
 
         return response()->json($response);
     }
 
-    public function checkSignature(string $theirSecret, string $encryptedPayload): void
+    public function checkSignature(?string $theirSecret, ?string $encryptedPayload): void
     {
-        $ourSecret = config('overwatch.secret');
+
+        if ($theirSecret === null) {
+            abort(401, 'Missing secret.');
+        }
+
+        if ($encryptedPayload === null) {
+            abort(401, 'Missing payload.');
+        }
+
+        $ourSecret = config('app.key');
 
         if (! $theirSecret || ! $ourSecret) {
             abort(401, 'Invalid secret.');
         }
 
-        // create new encrypter with our secret
-        $newEncrypter = new Encrypter($ourSecret, Config::get('app.cipher'));
-
-         try {
+        try {
             // decrypt incoming data
-            $decrypted = $newEncrypter->decrypt($encryptedPayload);
+            $decrypted = decrypt($encryptedPayload);
             $decryptedData = json_decode($decrypted);
 
             if (! isset($decryptedData->timestamp)) {
