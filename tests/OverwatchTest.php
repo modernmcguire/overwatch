@@ -3,6 +3,7 @@
 use Illuminate\Encryption\Encrypter;
 use Modernmcguire\Overwatch\LaravelVersion;
 use Modernmcguire\Overwatch\Overwatch;
+use Modernmcguire\Overwatch\PhpVersion;
 
 it('can check signature', function () {
     $overwatch = new Overwatch();
@@ -21,12 +22,23 @@ it('can check signature', function () {
 });
 
 it('can get laravel version', function () {
-    $laravelVersionController = new LaravelVersion();
+    $controller = new LaravelVersion();
 
-    $response = $laravelVersionController->handle();
+    $response = $controller->handle();
 
     expect($response)->toBeArray();
     expect($response['data'])->toBe(app()->version());
+    expect($response['message'])->toBe('Success');
+    expect($response['code'])->toBe(200);
+});
+
+it('can get php version', function () {
+    $controller = new PhpVersion();
+
+    $response = $controller->handle();
+
+    expect($response)->toBeArray();
+    expect($response['data'])->toBe(phpversion());
     expect($response['message'])->toBe('Success');
     expect($response['code'])->toBe(200);
 });

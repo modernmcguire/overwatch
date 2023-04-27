@@ -1,7 +1,7 @@
 {
     "name": "modernmcguire/overwatch",
     "description": "Configure and provide customizable Stripe data via RESTful endpoint.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "type": "package",
     "keywords": [
         "modernmcguire",
