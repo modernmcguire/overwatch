@@ -2,14 +2,16 @@
 
 namespace Modernmcguire\Overwatch;
 
+use Exception;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class Overwatch
 {
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
-        $this->checkSignature($request->header('X-OVERWATCH-SECRET'), $request->getContent());
+        $this->checkSignature($request->payload);
 
         $configs = config('overwatch.metrics');
 
@@ -20,41 +22,27 @@ class Overwatch
         }
 
         foreach ($configs as $config) {
-            $class = new $config;
             try {
+                $class = new $config();
                 $response[$class::KEY] = $class->handle();
             } catch (\Exception $e) {
-                $response[$class::KEY] = [
-                    'data' => null,
-                    'message' => $e->getMessage(),
-                    'code' => 500,
-                ];
+                $response[$class::KEY] = $e->getMessage();
             }
         }
 
         return response()->json($response);
     }
 
-    public function checkSignature(?string $theirSecret, ?string $encryptedPayload): void
+    public function checkSignature(string $encryptedPayload): void
     {
-
-        if ($theirSecret === null) {
-            abort(401, 'Missing secret.');
-        }
-
-        if ($encryptedPayload === null) {
-            abort(401, 'Missing payload.');
-        }
-
-        $ourSecret = config('app.key');
-
-        if (! $theirSecret || ! $ourSecret) {
-            abort(401, 'Invalid secret.');
+        try {
+            $decrypted = decrypt($encryptedPayload);
+        } catch (Exception $e) {
+            abort(401, 'Invalid payload.');
         }
 
         try {
             // decrypt incoming data
-            $decrypted = decrypt($encryptedPayload);
             $decryptedData = json_decode($decrypted);
 
             if (! isset($decryptedData->timestamp)) {
