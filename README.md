@@ -40,6 +40,8 @@ return [
     ],
 ];
 ```
+Your project needs to have values in both the url and overwatch_secret columns.
+
 From the site you wish to pull data to, make requests to `/overwatch` and create a payload. Make sure both sites use the same cipher.
 ```php
 $cipher = strtolower(Config::get('app.cipher'));
