@@ -2,6 +2,7 @@
 
 use Illuminate\Encryption\Encrypter;
 use Modernmcguire\Overwatch\Overwatch;
+use Modernmcguire\Overwatch\LaravelVersion;
 
 it('can check signature', function () {
     $overwatch = new Overwatch();
@@ -17,4 +18,15 @@ it('can check signature', function () {
 
     // checkSignature aborts if it fails so it will never reach this point on failure.
     expect(true)->toBeTrue();
+});
+
+it('can get laravel version', function () {
+    $laravelVersionController = new LaravelVersion();
+
+    $response = $laravelVersionController->handle();
+
+    expect($response)->toBeArray();
+    expect($response['data'])->toBe(app()->version());
+    expect($response['message'])->toBe('Success');
+    expect($response['code'])->toBe(200);
 });

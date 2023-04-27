@@ -15,11 +15,13 @@ You can publish the config file with:
 php artisan vendor:publish --tag="overwatch-config"
 ```
 
-This is the contents of the published config file:
+This is the contents of the published config file which will auto-include the laravel version:
 
 ```php
 return [
-    'metrics' => [],
+    'metrics' => [
+        LaravelVersion::class
+    ],
 ];
 ```
 

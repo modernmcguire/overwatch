@@ -1,5 +1,9 @@
 <?php
 
+use Modernmcguire\Overwatch\LaravelVersion;
+
 return [
-    'metrics' => [],
+    'metrics' => [
+        LaravelVersion::class,
+    ],
 ];
