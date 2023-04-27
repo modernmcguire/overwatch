@@ -1,7 +1,7 @@
 {
     "name": "modernmcguire/overwatch",
     "description": "Configure and provide customizable Stripe data via RESTful endpoint.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "package",
     "keywords": [
         "modernmcguire",
@@ -18,10 +18,10 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/contracts": "^9.0|^10.0",
+        "php": "8.*",
+        "illuminate/contracts": "*",
         "illuminate/routing": "*",
-        "spatie/laravel-package-tools": "^1.14.0"
+        "spatie/laravel-package-tools": "*"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
