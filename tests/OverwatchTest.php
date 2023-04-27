@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Encryption\Encrypter;
-use Modernmcguire\Overwatch\Overwatch;
 use Modernmcguire\Overwatch\LaravelVersion;
+use Modernmcguire\Overwatch\Overwatch;
 
 it('can check signature', function () {
     $overwatch = new Overwatch();

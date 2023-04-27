@@ -9,9 +9,9 @@ class LaravelVersion
     public function handle(): array
     {
         return [
-            'data'    => app()->version(),
+            'data' => app()->version(),
             'message' => 'Success',
-            'code'    => 200,
+            'code' => 200,
         ];
     }
 }
