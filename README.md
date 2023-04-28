@@ -18,10 +18,15 @@ php artisan vendor:publish --tag="overwatch-config"
 This is the contents of the published config file which will include the laravel and php version by default:
 
 ```php
+<?php
+
+use Modernmcguire\Overwatch\Metrics\PhpVersion;
+use Modernmcguire\Overwatch\Metrics\LaravelVersion;
+
 return [
     'metrics' => [
-        LaravelVersion::class
-        PhpVersion::class
+        PhpVersion::class,
+        LaravelVersion::class,
     ],
 ];
 ```
@@ -31,16 +36,30 @@ The site's secret uses the app key. To create a new one use the following comman
 ```bash
 php artisan key:generate
 ```
+Note: If you regenerate an app key, any stored encryptions will no longer work.
+
+
 Add custom classes to your overwatch config file
 
 ```php
+<?php
+
+use App\Metric\TotalCourseNumbers;
+use App\Metrics\MonthlyRecurringAmount;
+use Modernmcguire\Overwatch\Metrics\PhpVersion;
+use Modernmcguire\Overwatch\Metrics\LaravelVersion;
+
 return [
     'metrics' => [
-        StripeController::class,
-        LmsController::class,
+        PhpVersion::class,
+        LaravelVersion::class,
+
+        TotalCourseNumbers::class,
+        MonthlyRecurringAmount::class,
     ],
 ];
 ```
+
 Your project needs to have values in both the url and overwatch_secret columns.
 
 From the site you wish to pull data to, make requests to `/overwatch` and create a payload. Make sure both sites use the same cipher.
