@@ -17,6 +17,7 @@ class OverwatchServiceProvider extends PackageServiceProvider
         $package
             ->name('overwatch')
             ->hasConfigFile()
-            ->hasRoute('api');
+            ->hasRoute('api')
+            ->hasCommand(OverwatchCommand::class);
     }
 }
