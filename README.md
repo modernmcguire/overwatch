@@ -32,9 +32,9 @@ return [
 ```
 
 ## Usage
-The site's secret uses the app key. To create a new one use the following command:
+The site's secret uses a key defined when you install the package. To create a new one use the following command:
 ```bash
-php artisan key:generate
+php artisan overwatch
 ```
 Note: If you regenerate an app key, any stored encryptions will no longer work.
 
