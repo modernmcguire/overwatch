@@ -2,11 +2,10 @@
 
 namespace Modernmcguire\Overwatch\Commands;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 
 class OverwatchCommand extends Command
 {
@@ -35,15 +34,15 @@ class OverwatchCommand extends Command
         Artisan::command('config:cache');
     }
 
-    static public function setEnv(string $key, string $value): void
+    public static function setEnv(string $key, string $value): void
     {
         $path = base_path('.env');
 
         if (file_exists($path)) {
             $configKey = Str::replace('_', '.', strtolower($key));
             file_put_contents($path, str_replace(
-                $key . '=' . config($configKey),
-                $key . '=' . $value,
+                $key.'='.config($configKey),
+                $key.'='.$value,
                 file_get_contents($path)
             ));
         }
