@@ -4,6 +4,7 @@ namespace Modernmcguire\Overwatch;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Modernmcguire\Overwatch\Commands\OverwatchCommand;
 
 class OverwatchServiceProvider extends PackageServiceProvider
 {

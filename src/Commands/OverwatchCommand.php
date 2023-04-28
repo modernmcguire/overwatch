@@ -29,10 +29,10 @@ class OverwatchCommand extends Command
      */
     public function handle(): void
     {
-        $key = Encrypter::generateKey(config('app.cipher'));
-        config(['overwatch.secret' => $key]);
-        self::setEnv('OVERWATCH_SECRET', $key);
-        Artisan::command('config:cache');
+        $secret = 'base64:' . base64_encode(Encrypter::generateKey(config('app.cipher')));
+        self::setEnv('OVERWATCH_SECRET', $secret);
+        config(['overwatch.secret' => $secret]);
+        Artisan::call('config:cache');
     }
 
     static public function setEnv(string $key, string $value): void
@@ -41,11 +41,15 @@ class OverwatchCommand extends Command
 
         if (file_exists($path)) {
             $configKey = Str::replace('_', '.', strtolower($key));
-            file_put_contents($path, str_replace(
-                $key . '=' . config($configKey),
-                $key . '=' . $value,
-                file_get_contents($path)
-            ));
+            if (strpos(file_get_contents($path), $key) !== false) {
+                file_put_contents($path, str_replace(
+                    $key . '=' . config($configKey),
+                    $key . '=' . $value,
+                    file_get_contents($path)
+                ));
+            } else {
+                file_put_contents($path, file_get_contents($path) . "\n" . $key . '=' . $value);
+            }
         }
     }
 }
