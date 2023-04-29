@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Encryption\Encrypter;
 
 class Overwatch
 {
@@ -35,8 +36,14 @@ class Overwatch
 
     public function checkSignature(string $encryptedPayload): void
     {
+        if (config('overwatch.secret') == null) {
+            abort(401, 'Missing secret.');
+        }
+
         try {
-            $decrypted = decrypt($encryptedPayload);
+            $convertedKey = base64_decode(substr(config('overwatch.secret'), strlen('base64:')));
+            $encrypter = new Encrypter($convertedKey, config('app.cipher'));
+            $decrypted = $encrypter->decrypt($encryptedPayload);
         } catch (Exception $e) {
             abort(401, 'Invalid payload.');
         }
