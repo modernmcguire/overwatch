@@ -4,9 +4,9 @@ namespace Modernmcguire\Overwatch;
 
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Encryption\Encrypter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Encryption\Encrypter;
 
 class Overwatch
 {
