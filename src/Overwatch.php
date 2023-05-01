@@ -25,11 +25,13 @@ class Overwatch
         }
 
         foreach ($configs as $config) {
+            $class = new $config();
+
             try {
-                $class = new $config();
                 $response[$class::KEY] = $class->handle();
             } catch (\Exception $e) {
                 $response[$class::KEY] = $e->getMessage();
+                report($e);
             }
         }
 
