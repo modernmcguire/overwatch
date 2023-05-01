@@ -32,7 +32,7 @@ return [
 ```
 
 ## Usage
-The site's secret uses a key defined when you install the package. To create a new one use the following command:
+To create a new overwatch secret key for your project, use the following command:
 ```bash
 php artisan overwatch
 ```
