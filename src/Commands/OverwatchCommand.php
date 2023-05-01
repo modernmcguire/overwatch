@@ -32,6 +32,7 @@ class OverwatchCommand extends Command
         self::setEnv('OVERWATCH_SECRET', $secret);
         config(['overwatch.secret' => $secret]);
         Artisan::call('config:cache');
+        $this->info('Overwatch secret added to .env: '.$secret);
     }
 
     public static function setEnv(string $key, string $value): void
