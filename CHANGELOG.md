@@ -2,6 +2,17 @@
 
 All notable changes to `overwatch` will be documented in this file.
 
+## 1.1.4 - 2023-05-01
+
+### What's Changed
+
+- - added timezone check by @gnarhard in https://github.com/modernmcguire/overwatch/pull/12
+- 
+- - added helper text after command by @gnarhard in https://github.com/modernmcguire/overwatch/pull/11
+- 
+
+**Full Changelog**: https://github.com/modernmcguire/overwatch/compare/v1.1.2...1.1.4
+
 ## v1.1.3 - 2023-05-01
 
 Added output text after running secret generation command.
