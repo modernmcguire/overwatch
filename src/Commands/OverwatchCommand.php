@@ -14,7 +14,7 @@ class OverwatchCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'overwatch';
+    protected $signature = 'overwatch:generate';
 
     /**
      * The console command description.

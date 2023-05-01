@@ -34,7 +34,7 @@ return [
 ## Usage
 To create a new overwatch secret key for your project, use the following command:
 ```bash
-php artisan overwatch
+php artisan overwatch:generate
 ```
 Note: If you regenerate an app key, any stored encryptions will no longer work.
 
