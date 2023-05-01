@@ -6,16 +6,17 @@ use Modernmcguire\Overwatch\Metrics\PhpVersion;
 use Modernmcguire\Overwatch\Overwatch;
 
 it('can check signature', function () {
+
+    $secret = 'base64:'.base64_encode(Encrypter::generateKey(config('app.cipher')));
+    config(['overwatch.secret' => $secret]);
+
     $overwatch = new Overwatch();
-    $secret = Illuminate\Support\Str::random(32);
+    $payload = json_encode(['timestamp' => now('UTC')->toDateTimeString()]);
+    $convertedKey = base64_decode(substr(config('overwatch.secret'), strlen('base64:')));
+    $encrypter = new Encrypter($convertedKey, config('app.cipher'));
+    $encryptedPayload = $encrypter->encrypt($payload);
 
-    config(['app.key' => $secret]);
-
-    $newEncrypter = new Encrypter($secret, 'aes-256-cbc');
-    $payload = json_encode(['timestamp' => now()->toDateTimeString()]);
-    $encryptedPayload = $newEncrypter->encrypt($payload);
-
-    $overwatch->checkSignature($secret, $encryptedPayload);
+    $overwatch->checkSignature($encryptedPayload);
 
     // checkSignature aborts if it fails so it will never reach this point on failure.
     expect(true)->toBeTrue();
@@ -26,10 +27,7 @@ it('can get laravel version', function () {
 
     $response = $controller->handle();
 
-    expect($response)->toBeArray();
-    expect($response['data'])->toBe(app()->version());
-    expect($response['message'])->toBe('Success');
-    expect($response['code'])->toBe(200);
+    expect($response)->toBe(app()->version());
 });
 
 it('can get php version', function () {
@@ -37,8 +35,5 @@ it('can get php version', function () {
 
     $response = $controller->handle();
 
-    expect($response)->toBeArray();
-    expect($response['data'])->toBe(phpversion());
-    expect($response['message'])->toBe('Success');
-    expect($response['code'])->toBe(200);
+    expect($response)->toBe(phpversion());
 });

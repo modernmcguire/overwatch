@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class Overwatch
 {
+    const TZ = 'UTC';
+
     public function index(Request $request): JsonResponse
     {
         $this->checkSignature($request->payload);
@@ -23,11 +25,13 @@ class Overwatch
         }
 
         foreach ($configs as $config) {
+            $class = new $config();
+
             try {
-                $class = new $config();
                 $response[$class::KEY] = $class->handle();
             } catch (\Exception $e) {
                 $response[$class::KEY] = $e->getMessage();
+                report($e);
             }
         }
 
@@ -56,8 +60,9 @@ class Overwatch
                 abort(401, 'Missing timestamp.');
             }
 
-            $timestamp = Carbon::parse($decryptedData->timestamp)->tz('UTC');
-            if ($timestamp->lt(now()) && $timestamp->subMinute()->gt(now())) {
+
+            $timestamp = Carbon::parse($decryptedData->timestamp)->tz(self::TZ);
+            if ($timestamp->lt(now(self::TZ)) && $timestamp->subMinute()->gt(now(self::TZ))) {
                 abort(401, 'Expired secret.');
             }
         } catch (\Exception $e) {
