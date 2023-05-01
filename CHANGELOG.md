@@ -2,6 +2,10 @@
 
 All notable changes to `overwatch` will be documented in this file.
 
+## v1.1.3 - 2023-05-01
+
+Added output text after running secret generation command.
+
 ## v1.1.0 - 2023-04-28
 
 Uses a custom encryption key instead of the app key.
