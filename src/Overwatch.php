@@ -60,7 +60,6 @@ class Overwatch
                 abort(401, 'Missing timestamp.');
             }
 
-
             $timestamp = Carbon::parse($decryptedData->timestamp)->tz(self::TZ);
             if ($timestamp->lt(now(self::TZ)) && $timestamp->subMinute()->gt(now(self::TZ))) {
                 abort(401, 'Expired secret.');
