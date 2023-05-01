@@ -1,17 +1,14 @@
 <?php
 
 use Illuminate\Encryption\Encrypter;
-use Modernmcguire\Overwatch\Overwatch;
-use Illuminate\Support\Facades\Artisan;
-use Modernmcguire\Overwatch\Metrics\PhpVersion;
 use Modernmcguire\Overwatch\Metrics\LaravelVersion;
-
+use Modernmcguire\Overwatch\Metrics\PhpVersion;
+use Modernmcguire\Overwatch\Overwatch;
 
 it('can check signature', function () {
 
     $secret = 'base64:'.base64_encode(Encrypter::generateKey(config('app.cipher')));
     config(['overwatch.secret' => $secret]);
-
 
     $overwatch = new Overwatch();
     $payload = json_encode(['timestamp' => now('UTC')->toDateTimeString()]);
