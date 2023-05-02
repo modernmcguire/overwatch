@@ -2,13 +2,24 @@
 
 All notable changes to `overwatch` will be documented in this file.
 
+## 1.2.0 - 2023-05-02
+
+- Refactor to allow for expansion of entry points
+- Add `overwatch:metrics` command
+- Rename `overwatch:generate` command
+- Introduce Metric base class
+
+**Full Changelog**: https://github.com/modernmcguire/overwatch/compare/1.1.4...1.2.0
+
 ## 1.1.4 - 2023-05-01
 
 ### What's Changed
 
 - - added timezone check by @gnarhard in https://github.com/modernmcguire/overwatch/pull/12
 - 
+- 
 - - added helper text after command by @gnarhard in https://github.com/modernmcguire/overwatch/pull/11
+- 
 - 
 
 **Full Changelog**: https://github.com/modernmcguire/overwatch/compare/v1.1.2...1.1.4
