@@ -2,10 +2,10 @@
 
 namespace Modernmcguire\Overwatch\Metrics;
 
-class LaravelVersion
-{
-    public const KEY = 'laravel_version';
+use Modernmcguire\Overwatch\Metrics\Metric;
 
+class LaravelVersion extends Metric
+{
     public function handle()
     {
         return app()->version();

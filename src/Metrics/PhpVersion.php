@@ -2,10 +2,10 @@
 
 namespace Modernmcguire\Overwatch\Metrics;
 
-class PhpVersion
-{
-    const KEY = 'php_version';
+use Modernmcguire\Overwatch\Metrics\Metric;
 
+class PhpVersion extends Metric
+{
     public function handle()
     {
         return phpversion();
