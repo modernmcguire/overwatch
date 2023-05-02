@@ -2,9 +2,10 @@
 
 namespace Modernmcguire\Overwatch;
 
-use Modernmcguire\Overwatch\Commands\OverwatchCommand;
 use Spatie\LaravelPackageTools\Package;
+use Modernmcguire\Overwatch\Commands\OverwatchMetrics;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Modernmcguire\Overwatch\Commands\OverwatchGenerate;
 
 class OverwatchServiceProvider extends PackageServiceProvider
 {
@@ -19,6 +20,9 @@ class OverwatchServiceProvider extends PackageServiceProvider
             ->name('overwatch')
             ->hasConfigFile()
             ->hasRoute('api')
-            ->hasCommand(OverwatchCommand::class);
+            ->hasCommands([
+                OverwatchGenerate::class,
+                OverwatchMetrics::class,
+            ]);
     }
 }
