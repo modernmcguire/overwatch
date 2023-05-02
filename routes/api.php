@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modernmcguire\Overwatch\Overwatch;
+use Modernmcguire\Overwatch\Http\Controllers\OverwatchController;
 
-Route::post('/overwatch', [Overwatch::class, 'index'])->name('overwatch');
+Route::post('/overwatch', OverwatchController::class)->name('overwatch');
