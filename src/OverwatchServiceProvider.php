@@ -2,10 +2,10 @@
 
 namespace Modernmcguire\Overwatch;
 
-use Spatie\LaravelPackageTools\Package;
-use Modernmcguire\Overwatch\Commands\OverwatchMetrics;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Modernmcguire\Overwatch\Commands\OverwatchGenerate;
+use Modernmcguire\Overwatch\Commands\OverwatchMetrics;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class OverwatchServiceProvider extends PackageServiceProvider
 {

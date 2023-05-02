@@ -3,11 +3,11 @@
 namespace Modernmcguire\Overwatch\Http\Controllers;
 
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Routing\Controller;
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Carbon;
 use Modernmcguire\Overwatch\Overwatch;
 
 class OverwatchController extends Controller

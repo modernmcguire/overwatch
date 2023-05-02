@@ -3,9 +3,6 @@
 namespace Modernmcguire\Overwatch\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
 use Modernmcguire\Overwatch\Overwatch;
 
 class OverwatchMetrics extends Command
@@ -47,13 +44,13 @@ class OverwatchMetrics extends Command
         $results = Overwatch::run();
 
         // output the results
-        if($this->option('json')) {
+        if ($this->option('json')) {
             $this->line(json_encode($results));
         } else {
             $this->table(
                 ['Metric', 'Value'],
                 collect($results)->map(function ($value, $key) {
-                    if(is_array($value)) {
+                    if (is_array($value)) {
                         $value = json_encode($value);
                     }
 

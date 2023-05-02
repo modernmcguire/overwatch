@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Encryption\Encrypter;
-use Modernmcguire\Overwatch\Overwatch;
 use Illuminate\Support\Facades\Artisan;
-use Modernmcguire\Overwatch\Metrics\PhpVersion;
+use Illuminate\Support\Str;
 use Modernmcguire\Overwatch\Metrics\LaravelVersion;
+use Modernmcguire\Overwatch\Metrics\PhpVersion;
+use Modernmcguire\Overwatch\Overwatch;
 
 it('can run metrics', function () {
     config([
@@ -24,7 +24,7 @@ it('can run metrics', function () {
     expect($data['php_version'])->toBe(phpversion());
 });
 
-it('can run metrics locally', function(){
+it('can run metrics locally', function () {
     config([
         'overwatch.metrics' => [
             PhpVersion::class,
@@ -34,7 +34,6 @@ it('can run metrics locally', function(){
 
     $this->artisan('overwatch:metrics')->assertExitCode(0);
 });
-
 
 it('can check signature', function () {
 

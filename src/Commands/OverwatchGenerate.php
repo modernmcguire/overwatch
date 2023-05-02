@@ -2,11 +2,8 @@
 
 namespace Modernmcguire\Overwatch\Commands;
 
-use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
 
 class OverwatchGenerate extends Command
 {
@@ -32,7 +29,7 @@ class OverwatchGenerate extends Command
         $secret = 'base64:'.base64_encode(Encrypter::generateKey(config('app.cipher')));
 
         // only add to env if the no-env option isn't set
-        if(!$this->option('no-env')) {
+        if (! $this->option('no-env')) {
             $this->addToEnv($secret);
             $this->info('Overwatch secret added to .env: '.$secret);
         } else {
