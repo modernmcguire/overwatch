@@ -8,7 +8,16 @@ class Overwatch
 {
     public static function run()
     {
-        $configs = config('overwatch.metrics');
+        return (new Overwatch)->process(config('overwatch.metrics'));
+    }
+
+    public static function horizon()
+    {
+        return (new Overwatch)->process(config('overwatch.horizon'));
+    }
+
+    public function process($configs = []): array
+    {
         if (empty($configs)) {
             return [];
         }

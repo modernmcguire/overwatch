@@ -4,6 +4,7 @@ namespace Modernmcguire\Overwatch;
 
 use Modernmcguire\Overwatch\Commands\OverwatchGenerate;
 use Modernmcguire\Overwatch\Commands\OverwatchMetrics;
+use Modernmcguire\Overwatch\Commands\OverwatchSchedulerMonitor;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -23,6 +24,7 @@ class OverwatchServiceProvider extends PackageServiceProvider
             ->hasCommands([
                 OverwatchGenerate::class,
                 OverwatchMetrics::class,
+                OverwatchSchedulerMonitor::class,
             ]);
     }
 }
