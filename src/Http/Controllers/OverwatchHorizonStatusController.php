@@ -2,11 +2,9 @@
 
 namespace Modernmcguire\Overwatch\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Modernmcguire\Overwatch\Overwatch;
+use Illuminate\Http\Request;
 use Modernmcguire\Overwatch\Metrics\HorizonStatus;
-use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class OverwatchHorizonStatusController extends OverwatchController
 {

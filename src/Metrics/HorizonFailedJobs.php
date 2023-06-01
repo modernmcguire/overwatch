@@ -11,7 +11,7 @@ class HorizonFailedJobs extends Metric
     {
         $failedJobs = app(OverwatchJobRepository::class)->getFailed();
 
-        $failedInLastHour = $failedJobs->filter(function($job) {
+        $failedInLastHour = $failedJobs->filter(function ($job) {
             return Carbon::parse($job->failed_at) >= now()->subHour();
         });
 

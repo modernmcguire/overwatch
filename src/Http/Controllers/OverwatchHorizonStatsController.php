@@ -2,8 +2,8 @@
 
 namespace Modernmcguire\Overwatch\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Modernmcguire\Overwatch\Overwatch;
 
 class OverwatchHorizonStatsController extends OverwatchController

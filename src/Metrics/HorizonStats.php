@@ -2,11 +2,9 @@
 
 namespace Modernmcguire\Overwatch\Metrics;
 
-use Laravel\Horizon\WaitTimeCalculator;
 use Laravel\Horizon\Contracts\SupervisorRepository;
 use Laravel\Horizon\Repositories\RedisMetricsRepository;
-use Laravel\Horizon\Repositories\RedisProcessRepository;
-use Laravel\Horizon\Repositories\RedisWorkloadRepository;
+use Laravel\Horizon\WaitTimeCalculator;
 use Modernmcguire\Overwatch\Repositories\OverwatchJobRepository;
 
 class HorizonStats extends Metric

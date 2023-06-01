@@ -4,7 +4,6 @@ namespace Modernmcguire\Overwatch\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use Modernmcguire\Overwatch\Overwatch;
 
 class OverwatchSchedulerMonitor extends Command
 {
@@ -27,15 +26,15 @@ class OverwatchSchedulerMonitor extends Command
      */
     public function handle(): void
     {
-         // We only need to report that the scheduler can run this command
+        // We only need to report that the scheduler can run this command
         // If ran, that means the scheduler is active.
-         Http::baseUrl(config('overwatch.mothership_url'))
+        Http::baseUrl(config('overwatch.mothership_url'))
             ->acceptJson()
             ->asJson()
             ->withOptions([
-                'verify' => config('app.env') == 'production'
+                'verify' => config('app.env') == 'production',
             ])
-            ->post('/api/overwatch-monitor/' . config('overwatch.project_id'), [
+            ->post('/api/overwatch-monitor/'.config('overwatch.project_id'), [
                 'site' => config('app.url'),
                 'scheduler' => true,
             ]);
