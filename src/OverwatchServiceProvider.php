@@ -6,6 +6,7 @@ use Modernmcguire\Overwatch\Commands\OverwatchGenerate;
 use Modernmcguire\Overwatch\Commands\OverwatchMetrics;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Modernmcguire\Overwatch\Commands\OverwatchSchedulerMonitor;
 
 class OverwatchServiceProvider extends PackageServiceProvider
 {
@@ -23,6 +24,7 @@ class OverwatchServiceProvider extends PackageServiceProvider
             ->hasCommands([
                 OverwatchGenerate::class,
                 OverwatchMetrics::class,
+                OverwatchSchedulerMonitor::class,
             ]);
     }
 }
