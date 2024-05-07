@@ -2,6 +2,16 @@
 
 All notable changes to `overwatch` will be documented in this file.
 
+## Laravel 11 Support - 2024-05-07
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.2.0 to 2.3.0 by @dependabot in https://github.com/modernmcguire/overwatch/pull/13
+* Bump dependabot/fetch-metadata from 1.4.0 to 1.5.1 by @dependabot in https://github.com/modernmcguire/overwatch/pull/14
+* Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/modernmcguire/overwatch/pull/16
+
+**Full Changelog**: https://github.com/modernmcguire/overwatch/compare/1.2.0...1.3.0
+
 ## 1.2.0 - 2023-05-02
 
 - Refactor to allow for expansion of entry points
@@ -16,9 +26,11 @@ All notable changes to `overwatch` will be documented in this file.
 ### What's Changed
 
 - - added timezone check by @gnarhard in https://github.com/modernmcguire/overwatch/pull/12
+  
 - 
 - 
 - - added helper text after command by @gnarhard in https://github.com/modernmcguire/overwatch/pull/11
+  
 - 
 - 
 
