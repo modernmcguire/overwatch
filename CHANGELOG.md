@@ -2,6 +2,10 @@
 
 All notable changes to `overwatch` will be documented in this file.
 
+## 1.4.0 - 2026-01-21
+
+**Full Changelog**: https://github.com/modernmcguire/overwatch/compare/1.3.0...1.4.0
+
 ## Laravel 11 Support - 2024-05-07
 
 ### What's Changed
