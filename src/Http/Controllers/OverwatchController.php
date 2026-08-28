@@ -47,7 +47,7 @@ class OverwatchController extends Controller
             if ($timestamp->lt(now(self::TZ)) && $timestamp->subMinute()->gt(now(self::TZ))) {
                 abort(401, 'Expired secret.');
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             abort(401, $e->getMessage());
         }
     }

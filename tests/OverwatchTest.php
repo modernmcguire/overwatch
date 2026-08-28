@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Modernmcguire\Overwatch\Metrics\LaravelVersion;
 use Modernmcguire\Overwatch\Metrics\PhpVersion;
 use Modernmcguire\Overwatch\Overwatch;
+use Modernmcguire\Overwatch\Tests\Fixtures\TotalUsers;
 
 it('can run metrics', function () {
     config([
@@ -22,6 +23,16 @@ it('can run metrics', function () {
 
     expect($data)->toHaveKey('php_version');
     expect($data['php_version'])->toBe(phpversion());
+});
+
+it('uses the KEY constant when a metric defines one', function () {
+    config(['overwatch.metrics' => [TotalUsers::class]]);
+
+    $data = Overwatch::run();
+
+    expect($data)->toHaveKey('app_users');
+    expect($data)->not->toHaveKey('total_users');
+    expect($data['app_users'])->toBe(10);
 });
 
 it('can run metrics locally', function () {
