@@ -6,6 +6,11 @@
 
 This package allows you to define custom metrics for a Laravel application and retrieve them either through an HTTP request or a command.
 
+## Requirements
+
+- PHP 8.2 or higher (Laravel 13 requires PHP 8.3+)
+- Laravel 11, 12, or 13
+
 ## Installation
 
 You can install the package via composer:
@@ -52,7 +57,7 @@ Overwatch works by querying your application for Metrics that you want to track.
 
 namespace App\Metrics;
 
-use Modernmcguire\Overwatch\Metric;
+use Modernmcguire\Overwatch\Metrics\Metric;
 
 class TotalUsers extends Metric
 {
@@ -70,7 +75,7 @@ By default the metric will be snake cased and returned as a string. You can cust
 
 namespace App\Metrics;
 
-use Modernmcguire\Overwatch\Metric;
+use Modernmcguire\Overwatch\Metrics\Metric;
 
 class TotalUsers extends Metric
 {
